@@ -18,6 +18,7 @@ import { formatParite } from "@/lib/money";
 import { useFinance } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { CowrieMark } from "./mark";
+import { AccountChip } from "./account-chip";
 import { Button } from "./ui/button";
 import { NativeSelect } from "./ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -120,6 +121,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <Landmark className="size-3.5" />
               Parité BCEAO
             </span>
+            <AccountChip />
           </div>
         </header>
 

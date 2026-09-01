@@ -14,10 +14,12 @@ import { Route as DepensesRouteImport } from './routes/depenses'
 import { Route as EtudiantsRouteImport } from './routes/etudiants'
 import { Route as FiscaliteRouteImport } from './routes/fiscalite'
 import { Route as InvestissementsRouteImport } from './routes/investissements'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as RapportsRouteImport } from './routes/rapports'
 import { Route as RecettesRouteImport } from './routes/recettes'
 import { Route as SocieteRouteImport } from './routes/societe'
 import { Route as TresorerieRouteImport } from './routes/tresorerie'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -44,6 +46,11 @@ const InvestissementsRoute = InvestissementsRouteImport.update({
   path: '/investissements',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RapportsRoute = RapportsRouteImport.update({
   id: '/rapports',
   path: '/rapports',
@@ -64,6 +71,11 @@ const TresorerieRoute = TresorerieRouteImport.update({
   path: '/tresorerie',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -71,10 +83,12 @@ export interface FileRoutesByFullPath {
   '/etudiants': typeof EtudiantsRoute
   '/fiscalite': typeof FiscaliteRoute
   '/investissements': typeof InvestissementsRoute
+  '/login': typeof LoginRoute
   '/rapports': typeof RapportsRoute
   '/recettes': typeof RecettesRoute
   '/societe': typeof SocieteRoute
   '/tresorerie': typeof TresorerieRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,10 +96,12 @@ export interface FileRoutesByTo {
   '/etudiants': typeof EtudiantsRoute
   '/fiscalite': typeof FiscaliteRoute
   '/investissements': typeof InvestissementsRoute
+  '/login': typeof LoginRoute
   '/rapports': typeof RapportsRoute
   '/recettes': typeof RecettesRoute
   '/societe': typeof SocieteRoute
   '/tresorerie': typeof TresorerieRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,10 +110,12 @@ export interface FileRoutesById {
   '/etudiants': typeof EtudiantsRoute
   '/fiscalite': typeof FiscaliteRoute
   '/investissements': typeof InvestissementsRoute
+  '/login': typeof LoginRoute
   '/rapports': typeof RapportsRoute
   '/recettes': typeof RecettesRoute
   '/societe': typeof SocieteRoute
   '/tresorerie': typeof TresorerieRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,10 +125,12 @@ export interface FileRouteTypes {
     | '/etudiants'
     | '/fiscalite'
     | '/investissements'
+    | '/login'
     | '/rapports'
     | '/recettes'
     | '/societe'
     | '/tresorerie'
+    | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -118,10 +138,12 @@ export interface FileRouteTypes {
     | '/etudiants'
     | '/fiscalite'
     | '/investissements'
+    | '/login'
     | '/rapports'
     | '/recettes'
     | '/societe'
     | '/tresorerie'
+    | '/api/auth/$'
   id:
     | '__root__'
     | '/'
@@ -129,10 +151,12 @@ export interface FileRouteTypes {
     | '/etudiants'
     | '/fiscalite'
     | '/investissements'
+    | '/login'
     | '/rapports'
     | '/recettes'
     | '/societe'
     | '/tresorerie'
+    | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -141,10 +165,12 @@ export interface RootRouteChildren {
   EtudiantsRoute: typeof EtudiantsRoute
   FiscaliteRoute: typeof FiscaliteRoute
   InvestissementsRoute: typeof InvestissementsRoute
+  LoginRoute: typeof LoginRoute
   RapportsRoute: typeof RapportsRoute
   RecettesRoute: typeof RecettesRoute
   SocieteRoute: typeof SocieteRoute
   TresorerieRoute: typeof TresorerieRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -184,6 +210,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InvestissementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rapports': {
       id: '/rapports'
       path: '/rapports'
@@ -212,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TresorerieRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -221,10 +261,12 @@ const rootRouteChildren: RootRouteChildren = {
   EtudiantsRoute: EtudiantsRoute,
   FiscaliteRoute: FiscaliteRoute,
   InvestissementsRoute: InvestissementsRoute,
+  LoginRoute: LoginRoute,
   RapportsRoute: RapportsRoute,
   RecettesRoute: RecettesRoute,
   SocieteRoute: SocieteRoute,
   TresorerieRoute: TresorerieRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

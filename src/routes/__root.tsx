@@ -1,7 +1,9 @@
-import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Outlet, Scripts, useRouterState } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { AuthGate } from "@/components/auth-gate";
 import { AppShell } from "@/components/app-shell";
+import { FinanceSync } from "@/components/finance-sync";
 import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 
@@ -43,9 +45,7 @@ function Root() {
       <body>
         <PreviewHostBridge />
         <AuthProvider>
-          <AppShell>
-            <Outlet />
-          </AppShell>
+          <RootBody />
           <Toaster
             position="bottom-right"
             toastOptions={{
@@ -61,5 +61,19 @@ function Root() {
         <Scripts />
       </body>
     </html>
+  );
+}
+
+function RootBody() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  if (pathname === "/login") return <Outlet />;
+  return (
+    <AuthGate>
+      <FinanceSync>
+        <AppShell>
+          <Outlet />
+        </AppShell>
+      </FinanceSync>
+    </AuthGate>
   );
 }
